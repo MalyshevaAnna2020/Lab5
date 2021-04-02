@@ -10,11 +10,11 @@ public class SpaceMarine {
     private String name; //Поле не может быть null, Строка не может быть пустой
     private Coordinates coordinates; //Поле не может быть null
     private Date creationDate; //Поле не может быть null, Значение этого поля должно генерироваться автоматически
-    private Long health; //Поле может быть null, Значение поля должно быть больше 0
+    private Long health = null; //Поле может быть null, Значение поля должно быть больше 0
     private int heartCount; //Значение поля должно быть больше 0, Максимальное значение поля: 3
-    private String achievements; //Поле может быть null
-    private AstartesCategory category; //Поле может быть null
-    private Chapter chapter; //Поле может быть null
+    private String achievements = null; //Поле может быть null
+    private AstartesCategory category = null; //Поле может быть null
+    private Chapter chapter = null; //Поле может быть null
 
     /**
      * Method automatically sets id of the object of the collection
@@ -127,7 +127,12 @@ public class SpaceMarine {
         String name = chapter;
         if (chapter.contains(".")) {
             name = chapter.substring(0, chapter.indexOf("."));
-            marinesCount = Integer.parseInt(chapter.substring(chapter.indexOf(".") + 2));
+            try {
+                marinesCount = Integer.parseInt(chapter.substring(chapter.indexOf(".") + 2));
+            }
+            catch(NumberFormatException e){
+                System.err.println("Значение MarinesCount представляет собой натуральное число!");
+            }
         }
         Chapter chapter1 = new Chapter();
         chapter1.setName(name);

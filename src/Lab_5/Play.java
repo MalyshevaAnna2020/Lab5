@@ -117,14 +117,10 @@ public class Play {
                     while(isr.ready()) {
                         StringBuilder builder = new StringBuilder();
                         while (true) {
-                            try {
-                                char c = (char) isr.read();
-                                builder.append(c);
-                                if (!isr.ready()) break mylabel;
-                                if (c == '\n') break;
-                            } catch (IOException e) {
-                                System.err.println("!");
-                            }
+                            char c = (char) isr.read();
+                            builder.append(c);
+                            if (!isr.ready()) break mylabel;
+                            if (c == '\n') break;
                         }
                         String s = builder.toString();
                         if (s.length() > 257){

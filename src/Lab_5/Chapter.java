@@ -60,6 +60,6 @@ public class Chapter {
      */
     @Override
     public String toString(){
-        return "Часть " + this.getName();
+        return this.getName() + ". Часть " + this.getMarinesCount();
     }
 }

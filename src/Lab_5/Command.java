@@ -28,6 +28,18 @@ public class Command {
                         "achievements=\"" + hashtable.get(key).getAchievements() + "\"\t" +
                         "category=\"" + hashtable.get(key).getCategory() + "\"\t" +
                         "chapter=\"" + hashtable.get(key).getChapter() + "\"");
+                if (hashtable.get(key).getHealth() == null){
+                    System.err.println("Значение переменной health равно null!");
+                }
+                if (hashtable.get(key).getAchievements() == null){
+                    System.err.println("Значение переменной achievements равно null!");
+                }
+                if (hashtable.get(key).getCategory() == null){
+                    System.err.println("Значение переменной category равно null!");
+                }
+                if (hashtable.get(key).getChapter() == null){
+                    System.err.println("Значение переменной chapter равно null!");
+                }
             }
         }else{
             System.out.println("В коллекции нет элементов!");

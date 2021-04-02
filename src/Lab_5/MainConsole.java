@@ -16,13 +16,13 @@ public class MainConsole {
         for (String string_arg : args){
             m_file.append(string_arg);
         }
-        if (!m_file.toString().contains("^D")) {
+        try {
             File file_main = new File(m_file.toString());
             try {
                 new CheckFile().checkFileRead(file_main);
+                System.out.println("Файл найден!");
             } catch (FileNotFoundException | FileNotRead e) {
                 file_main = new Console().thefile();
-                //if (file_main == null)
             }
             Hashtable<String, SpaceMarine> hashtable = new Hashtable<>();
             Scanner in = new Scanner(System.in);
@@ -45,15 +45,24 @@ public class MainConsole {
             System.out.println("Можно начинать вводить команды (длина строки не должна превышать 256)!");
             String newcommand;
             while (true) {
-                newcommand = in.nextLine();
-                if (newcommand.length() > 256) {
-                    System.err.println("Очень длинная строка! Введите более короткий вариант!");
-                    continue;
+                try {
+                    newcommand = in.nextLine();
+                    if (newcommand.length() > 256) {
+                        System.err.println("Очень длинная строка! Введите более короткий вариант!");
+                        continue;
+                    }
+                    if (newcommand.equals("")) continue;
+                    newcommand = newcommand.trim();
+                    if (newcommand.equals("exit")) break;
+                    hashtable = p.play(hashtable, newcommand, file_main);
                 }
-                newcommand = newcommand.trim();
-                if (newcommand.equals("exit")) break;
-                hashtable = p.play(hashtable, newcommand, file_main);
+                catch (NoSuchElementException exp){
+                    System.out.println(exp.getMessage());
+                }
             }
+        }
+        catch(NoSuchElementException exp){
+            System.out.println(exp.getMessage());
         }
     }
 }
